@@ -2,19 +2,23 @@ using UnityEngine;
 
 namespace Asteroids
 {
-    internal sealed class Player : PlayerView
+    internal sealed class Player : IExecute
     {
         private Camera _camera;
         private Ship _ship;
+        private Transform _transformPlayer;
 
-        public void Start()
+        public void Awake()
         {
+            PlayerView playerView = new PlayerView();
+
             _camera = Camera.main;
+            _transformPlayer = playerView.transform;
         }
 
         public void Update()
         {
-            var direction = Input.mousePosition - _camera.WorldToScreenPoint(transform.position);
+            var direction = Input.mousePosition - _camera.WorldToScreenPoint(_transformPlayer.position);
             _ship.Rotation(direction);
         }
     }

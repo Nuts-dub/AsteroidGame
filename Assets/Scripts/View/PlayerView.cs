@@ -1,13 +1,30 @@
 using UnityEngine;
+using UnityEngine.UI;
 
-public class PlayerView : MonoBehaviour
+namespace Asteroids
 {
-    [SerializeField] public Rigidbody2D _player;
-    [SerializeField] public float _speed;
-    [SerializeField] public float _acceleration;
-    [SerializeField] public float _health;
-    [SerializeField] public Rigidbody2D _bullet;
-    [SerializeField] public Transform _barrel;
-    [SerializeField] public float _force;
-    public Transform _transform;
+    public class PlayerView : MonoBehaviour
+    {
+        [SerializeField]
+        private Slider _healthSlider;
+
+        public DamageProvider DamageProvider { get; private set; }
+
+        public void DoLateUpdate()
+        {
+            DamageProvider = null;
+        }
+
+        public void SetHpNormalized(int hp)
+        {
+            _healthSlider.value = (_healthSlider.maxValue - _healthSlider.minValue) * hp;
+        }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            DamageProvider = collision.gameObject.GetComponent<DamageProvider>();
+        }
+
+
+    }
 }
