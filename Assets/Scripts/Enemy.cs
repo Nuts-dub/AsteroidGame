@@ -7,6 +7,7 @@ namespace Asteroids
         public static IEnemyFactory Factory;
         private Transform _rotPool;
         public Health _health;
+        private float _durability;  //
 
         public Health Health
         {
@@ -19,6 +20,12 @@ namespace Asteroids
                 return _health;
             }
             protected set => _health = value;
+        }
+
+        public void Init(float durability)    //
+        {
+            _durability = durability;
+            Destroy(gameObject, 10f);
         }
 
         public Transform RotPool

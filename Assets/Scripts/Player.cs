@@ -6,7 +6,7 @@ namespace Asteroids
     {
         private Camera _camera;
         private Ship _ship;
-        private Transform _transformPlayer;
+        public Transform _transformPlayer;
 
         public void Awake()
         {
