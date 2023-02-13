@@ -6,7 +6,7 @@ using Object = UnityEngine.Object;
 
 namespace Asteroids
 {
-    internal sealed class EnemyPool
+    internal sealed class EnemyPool : IService
     {
         private readonly Dictionary<string, HashSet<Enemy>> _enemyPool;
         private readonly int _capacityPool;
